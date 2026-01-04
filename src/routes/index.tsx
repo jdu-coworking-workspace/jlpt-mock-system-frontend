@@ -1,118 +1,132 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import {
-  Zap,
-  Server,
-  Route as RouteIcon,
-  Shield,
-  Waves,
-  Sparkles,
+  BookOpen,
+  CheckCircle,
+  Clock,
+  LayoutDashboard,
+  ShieldCheck,
+  Trophy,
 } from 'lucide-react'
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({ component: LandingPage })
 
-function App() {
+function LandingPage() {
   const features = [
     {
-      icon: <Zap className="w-12 h-12 text-cyan-400" />,
-      title: 'Powerful Server Functions',
+      icon: <BookOpen className="w-12 h-12 text-teal-500" />,
+      title: 'Full Mock Exams',
       description:
-        'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
+        'Experience the real JLPT environment with timed tests covering N5 to N1 levels.',
     },
     {
-      icon: <Server className="w-12 h-12 text-cyan-400" />,
-      title: 'Flexible Server Side Rendering',
+      icon: <CheckCircle className="w-12 h-12 text-teal-500" />,
+      title: 'Instant Results',
       description:
-        'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
+        'Get immediate feedback and detailed scoring breakdowns after every test.',
     },
     {
-      icon: <RouteIcon className="w-12 h-12 text-cyan-400" />,
-      title: 'API Routes',
+      icon: <Clock className="w-12 h-12 text-teal-500" />,
+      title: 'Time Management',
       description:
-        'Build type-safe API endpoints alongside your application. No separate backend needed.',
+        'Practice with realistic time limits to improve your pace and accuracy.',
     },
     {
-      icon: <Shield className="w-12 h-12 text-cyan-400" />,
-      title: 'Strongly Typed Everything',
+      icon: <LayoutDashboard className="w-12 h-12 text-teal-500" />,
+      title: 'Personal Dashboard',
       description:
-        'End-to-end type safety from server to client. Catch errors before they reach production.',
+        'Track your progress over time and see which areas need more focus.',
     },
     {
-      icon: <Waves className="w-12 h-12 text-cyan-400" />,
-      title: 'Full Streaming Support',
+      icon: <Trophy className="w-12 h-12 text-teal-500" />,
+      title: 'Progress Tracking',
       description:
-        'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
+        'Keep a history of all your attempts and celebrate your improvement.',
     },
     {
-      icon: <Sparkles className="w-12 h-12 text-cyan-400" />,
-      title: 'Next Generation Ready',
+      icon: <ShieldCheck className="w-12 h-12 text-teal-500" />,
+      title: 'Master-led Content',
       description:
-        'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
+        'Exams are curated and monitored by experts to ensure quality and relevance.',
     },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <section className="relative py-20 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10"></div>
-        <div className="relative max-w-5xl mx-auto">
-          <div className="flex items-center justify-center gap-6 mb-6">
-            <img
-              src="/tanstack-circle-logo.png"
-              alt="TanStack Logo"
-              className="w-24 h-24 md:w-32 md:h-32"
-            />
-            <h1 className="text-6xl md:text-7xl font-black text-white [letter-spacing:-0.08em]">
-              <span className="text-gray-300">TANSTACK</span>{' '}
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                START
-              </span>
-            </h1>
-          </div>
-          <p className="text-2xl md:text-3xl text-gray-300 mb-4 font-light">
-            The framework for next generation AI applications
+    <div className="min-h-screen bg-white text-gray-900">
+      {/* Hero Section */}
+      <section className="relative py-20 px-6 text-center bg-gray-50 border-b">
+        <div className="max-w-5xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+            Master the <span className="text-teal-600">JLPT</span> with
+            Confidence
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+            The ultimate mock system for the Japanese Language Proficiency Test.
+            Practice with real exams, track your progress, and pass with flying
+            colors.
           </p>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
-            Full-stack framework powered by TanStack Router for React and Solid.
-            Build modern applications with server functions, streaming, and type
-            safety.
-          </p>
-          <div className="flex flex-col items-center gap-4">
-            <a
-              href="https://tanstack.com/start"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to="/login"
+              className="px-8 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg transition-colors shadow-lg"
             >
-              Documentation
-            </a>
-            <p className="text-gray-400 text-sm mt-2">
-              Begin your TanStack Start journey by editing{' '}
-              <code className="px-2 py-1 bg-slate-700 rounded text-cyan-400">
-                /src/routes/index.tsx
-              </code>
-            </p>
+              Get Started
+            </Link>
+            <Link
+              to="/register"
+              className="px-8 py-3 border-2 border-teal-600 text-teal-600 hover:bg-teal-50 font-semibold rounded-lg transition-colors"
+            >
+              Create Account
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Features Section */}
+      <section className="py-20 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold mb-4">Why Choose Our System?</h2>
+          <div className="w-20 h-1.5 bg-teal-600 mx-auto rounded-full"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
+              className="p-8 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
             >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-3">
+              <div className="mb-6">{feature.icon}</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 {feature.description}
               </p>
             </div>
           ))}
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+          <div>
+            <h3 className="text-2xl font-bold text-teal-500">
+              JLPT Mock System
+            </h3>
+            <p className="text-gray-400 mt-2">© 2026 Your Path to N1.</p>
+          </div>
+          <div className="flex gap-6">
+            <Link to="/login" className="hover:text-teal-400 transition-colors">
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="hover:text-teal-400 transition-colors"
+            >
+              Register
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

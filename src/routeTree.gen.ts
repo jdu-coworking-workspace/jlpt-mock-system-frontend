@@ -9,19 +9,74 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TestTakingRouteImport } from './routes/_test-taking'
+import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRegisterRouteImport } from './routes/_auth.register'
+import { Route as AuthLoginRouteImport } from './routes/_auth.login'
+import { Route as AppProfileRouteImport } from './routes/_app.profile'
+import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppTestsIndexRouteImport } from './routes/_app.tests.index'
+import { Route as AppResultsIndexRouteImport } from './routes/_app.results.index'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
+import { Route as AppTestsTestIdRouteImport } from './routes/_app.tests.$testId'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
+import { Route as AppMasterUsersIndexRouteImport } from './routes/_app.master.users.index'
+import { Route as AppMasterTestsIndexRouteImport } from './routes/_app.master.tests.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
+import { Route as TestTakingTestsTestIdTakeRouteImport } from './routes/_test-taking.tests.$testId.take'
 
+const TestTakingRoute = TestTakingRouteImport.update({
+  id: '/_test-taking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTestsIndexRoute = AppTestsIndexRouteImport.update({
+  id: '/tests/',
+  path: '/tests/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResultsIndexRoute = AppResultsIndexRouteImport.update({
+  id: '/results/',
+  path: '/results/',
+  getParentRoute: () => AppRoute,
 } as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
   id: '/demo/start/server-funcs',
@@ -38,10 +93,25 @@ const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
   path: '/demo/api/names',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppTestsTestIdRoute = AppTestsTestIdRouteImport.update({
+  id: '/tests/$testId',
+  path: '/tests/$testId',
+  getParentRoute: () => AppRoute,
+} as any)
 const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
   id: '/demo/start/ssr/',
   path: '/demo/start/ssr/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppMasterUsersIndexRoute = AppMasterUsersIndexRouteImport.update({
+  id: '/master/users/',
+  path: '/master/users/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMasterTestsIndexRoute = AppMasterTestsIndexRouteImport.update({
+  id: '/master/tests/',
+  path: '/master/tests/',
+  getParentRoute: () => AppRoute,
 } as any)
 const DemoStartSsrSpaModeRoute = DemoStartSsrSpaModeRouteImport.update({
   id: '/demo/start/ssr/spa-mode',
@@ -58,73 +128,148 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
   path: '/demo/start/ssr/data-only',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestTakingTestsTestIdTakeRoute =
+  TestTakingTestsTestIdTakeRouteImport.update({
+    id: '/tests/$testId/take',
+    path: '/tests/$testId/take',
+    getParentRoute: () => TestTakingRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/profile': typeof AppProfileRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/tests/$testId': typeof AppTestsTestIdRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/results': typeof AppResultsIndexRoute
+  '/tests': typeof AppTestsIndexRoute
+  '/tests/$testId/take': typeof TestTakingTestsTestIdTakeRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
+  '/master/tests': typeof AppMasterTestsIndexRoute
+  '/master/users': typeof AppMasterUsersIndexRoute
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/profile': typeof AppProfileRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/tests/$testId': typeof AppTestsTestIdRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/results': typeof AppResultsIndexRoute
+  '/tests': typeof AppTestsIndexRoute
+  '/tests/$testId/take': typeof TestTakingTestsTestIdTakeRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
+  '/master/tests': typeof AppMasterTestsIndexRoute
+  '/master/users': typeof AppMasterUsersIndexRoute
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/_auth': typeof AuthRouteWithChildren
+  '/_test-taking': typeof TestTakingRouteWithChildren
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/profile': typeof AppProfileRoute
+  '/_auth/login': typeof AuthLoginRoute
+  '/_auth/register': typeof AuthRegisterRoute
+  '/_app/tests/$testId': typeof AppTestsTestIdRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/_app/results/': typeof AppResultsIndexRoute
+  '/_app/tests/': typeof AppTestsIndexRoute
+  '/_test-taking/tests/$testId/take': typeof TestTakingTestsTestIdTakeRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
+  '/_app/master/tests/': typeof AppMasterTestsIndexRoute
+  '/_app/master/users/': typeof AppMasterUsersIndexRoute
   '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
+    | '/profile'
+    | '/login'
+    | '/register'
+    | '/tests/$testId'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/results'
+    | '/tests'
+    | '/tests/$testId/take'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
+    | '/master/tests'
+    | '/master/users'
     | '/demo/start/ssr'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard'
+    | '/profile'
+    | '/login'
+    | '/register'
+    | '/tests/$testId'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/results'
+    | '/tests'
+    | '/tests/$testId/take'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
+    | '/master/tests'
+    | '/master/users'
     | '/demo/start/ssr'
   id:
     | '__root__'
     | '/'
+    | '/_app'
+    | '/_auth'
+    | '/_test-taking'
+    | '/_app/dashboard'
+    | '/_app/profile'
+    | '/_auth/login'
+    | '/_auth/register'
+    | '/_app/tests/$testId'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/_app/results/'
+    | '/_app/tests/'
+    | '/_test-taking/tests/$testId/take'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
+    | '/_app/master/tests/'
+    | '/_app/master/users/'
     | '/demo/start/ssr/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
+  TestTakingRoute: typeof TestTakingRouteWithChildren
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
@@ -136,12 +281,75 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_test-taking': {
+      id: '/_test-taking'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof TestTakingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_auth/register': {
+      id: '/_auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_app/profile': {
+      id: '/_app/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/tests/': {
+      id: '/_app/tests/'
+      path: '/tests'
+      fullPath: '/tests'
+      preLoaderRoute: typeof AppTestsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/results/': {
+      id: '/_app/results/'
+      path: '/results'
+      fullPath: '/results'
+      preLoaderRoute: typeof AppResultsIndexRouteImport
+      parentRoute: typeof AppRoute
     }
     '/demo/start/server-funcs': {
       id: '/demo/start/server-funcs'
@@ -164,12 +372,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoApiNamesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/tests/$testId': {
+      id: '/_app/tests/$testId'
+      path: '/tests/$testId'
+      fullPath: '/tests/$testId'
+      preLoaderRoute: typeof AppTestsTestIdRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/demo/start/ssr/': {
       id: '/demo/start/ssr/'
       path: '/demo/start/ssr'
       fullPath: '/demo/start/ssr'
       preLoaderRoute: typeof DemoStartSsrIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_app/master/users/': {
+      id: '/_app/master/users/'
+      path: '/master/users'
+      fullPath: '/master/users'
+      preLoaderRoute: typeof AppMasterUsersIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/master/tests/': {
+      id: '/_app/master/tests/'
+      path: '/master/tests'
+      fullPath: '/master/tests'
+      preLoaderRoute: typeof AppMasterTestsIndexRouteImport
+      parentRoute: typeof AppRoute
     }
     '/demo/start/ssr/spa-mode': {
       id: '/demo/start/ssr/spa-mode'
@@ -192,11 +421,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoStartSsrDataOnlyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_test-taking/tests/$testId/take': {
+      id: '/_test-taking/tests/$testId/take'
+      path: '/tests/$testId/take'
+      fullPath: '/tests/$testId/take'
+      preLoaderRoute: typeof TestTakingTestsTestIdTakeRouteImport
+      parentRoute: typeof TestTakingRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppTestsTestIdRoute: typeof AppTestsTestIdRoute
+  AppResultsIndexRoute: typeof AppResultsIndexRoute
+  AppTestsIndexRoute: typeof AppTestsIndexRoute
+  AppMasterTestsIndexRoute: typeof AppMasterTestsIndexRoute
+  AppMasterUsersIndexRoute: typeof AppMasterUsersIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppDashboardRoute: AppDashboardRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppTestsTestIdRoute: AppTestsTestIdRoute,
+  AppResultsIndexRoute: AppResultsIndexRoute,
+  AppTestsIndexRoute: AppTestsIndexRoute,
+  AppMasterTestsIndexRoute: AppMasterTestsIndexRoute,
+  AppMasterUsersIndexRoute: AppMasterUsersIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
+interface AuthRouteChildren {
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+interface TestTakingRouteChildren {
+  TestTakingTestsTestIdTakeRoute: typeof TestTakingTestsTestIdTakeRoute
+}
+
+const TestTakingRouteChildren: TestTakingRouteChildren = {
+  TestTakingTestsTestIdTakeRoute: TestTakingTestsTestIdTakeRoute,
+}
+
+const TestTakingRouteWithChildren = TestTakingRoute._addFileChildren(
+  TestTakingRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  AuthRoute: AuthRouteWithChildren,
+  TestTakingRoute: TestTakingRouteWithChildren,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
