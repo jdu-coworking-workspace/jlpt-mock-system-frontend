@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { AlertTriangle, Clock, HelpCircle, Trophy } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -9,7 +10,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { Clock, HelpCircle, Trophy, AlertTriangle } from 'lucide-react'
 
 export const Route = createFileRoute('/_app/tests/$testId')({
   component: TestDetailComponent,

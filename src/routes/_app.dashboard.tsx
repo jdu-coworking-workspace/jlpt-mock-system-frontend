@@ -1,4 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { BookOpen, CheckCircle2, Clock, Trophy } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -6,8 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { BookOpen, CheckCircle2, Clock, Trophy } from 'lucide-react'
 
 import { useAuth } from '@/lib/auth'
 

@@ -1,9 +1,7 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { useAuth } from '@/lib/auth'
-
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -14,6 +12,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useAuth } from '@/lib/auth'
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),

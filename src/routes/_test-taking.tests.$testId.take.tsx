@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Button } from '@/components/ui/button'
-import { ChevronLeft, ChevronRight, AlertCircle, Clock } from 'lucide-react'
+import { AlertCircle, ChevronLeft, ChevronRight, Clock } from 'lucide-react'
 import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/_test-taking/tests/$testId/take')({

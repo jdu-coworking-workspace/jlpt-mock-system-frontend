@@ -1,19 +1,19 @@
 import { Link, useNavigate } from '@tanstack/react-router'
-import { useAuth } from '@/lib/auth'
-
-import { useState } from 'react'
 import {
   ChevronDown,
   ChevronRight,
   Home,
+  LogOut,
   Menu,
   Network,
   SquareFunction,
   StickyNote,
-  X,
-  LogOut,
   User as UserIcon,
+  X,
 } from 'lucide-react'
+
+import { useState } from 'react'
+import { useAuth } from '@/lib/auth'
 
 export default function Header() {
   const { user, logout } = useAuth()
