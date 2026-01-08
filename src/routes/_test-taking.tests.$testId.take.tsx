@@ -3,6 +3,7 @@ import { AlertCircle, ChevronLeft, ChevronRight, Clock } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { jlptQuestions } from '@/data/jlpt-mock-questions'
 
 export const Route = createFileRoute('/_test-taking/tests/$testId/take')({
   component: TestTakingComponent,
@@ -12,20 +13,7 @@ function TestTakingComponent() {
   const { testId } = Route.useParams()
   const [answers, setAnswers] = useState<Record<number, number>>({})
 
-  const questions = [
-    {
-      id: 1,
-      text: 'この大学は地元の学生が多い',
-      options: ['じもと', 'ちげん', 'ちもと', 'じけん'],
-      category: 'Kanji reading',
-    },
-    {
-      id: 2,
-      text: '両国経済的に密接な関係にある',
-      options: ['ひっせつ', 'みっせつ', 'みつせつ', 'ひつせつ'],
-      category: 'Kanji reading',
-    },
-  ]
+  const questions = jlptQuestions
 
   const toggleAnswer = (qId: number, optionIndex: number) => {
     setAnswers((prev) => ({
@@ -74,16 +62,20 @@ function TestTakingComponent() {
                 Question {q.id}
               </h3>
               <p className="text-xl mb-6 font-medium text-gray-900 leading-relaxed">
-                {q.text.split('地元').map((part, i, arr) => (
-                  <span key={i}>
-                    {part}
-                    {i < arr.length - 1 && (
-                      <span className="underline underline-offset-4 decoration-2 decoration-gray-400">
-                        地元
-                      </span>
-                    )}
-                  </span>
-                ))}
+                {q.highlight ? (
+                  q.text.split(q.highlight).map((part, i, arr) => (
+                    <span key={i}>
+                      {part}
+                      {i < arr.length - 1 && (
+                        <span className="underline underline-offset-4 decoration-2 decoration-gray-400">
+                          {q.highlight}
+                        </span>
+                      )}
+                    </span>
+                  ))
+                ) : (
+                  q.text
+                )}
               </p>
 
               <div className="space-y-3 mb-6 pl-1">
@@ -181,44 +173,32 @@ function TestTakingComponent() {
                   Navigation
                 </h4>
 
-                <div className="mb-4">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase mb-2">
-                    Kanji reading
-                  </p>
-                  <div className="grid grid-cols-5 gap-1.5">
-                    {[1, 2, 3, 4, 5].map((n) => (
-                      <button
-                        key={n}
-                        className={cn(
-                          'w-8 h-8 rounded-lg border flex items-center justify-center text-xs font-medium transition-all',
-                          answers[n]
-                            ? 'bg-teal-600 border-teal-600 text-white shadow-sm'
-                            : n === 1
-                              ? 'border-teal-500 text-teal-700 bg-teal-50 ring-2 ring-teal-100'
-                              : 'border-gray-200 text-gray-600 hover:border-teal-300 hover:text-teal-600',
-                        )}
-                      >
-                        {n}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase mb-2">
-                    Orthography
-                  </p>
-                  <div className="grid grid-cols-5 gap-1.5">
-                    {[6, 7, 8, 9, 10].map((n) => (
-                      <button
-                        key={n}
-                        className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-xs font-medium text-gray-600 hover:border-teal-300 hover:text-teal-600 transition-all"
-                      >
-                        {n}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                {Array.from(new Set(questions.map((q) => q.category))).map(
+                  (category) => (
+                    <div key={category} className="mb-4">
+                      <p className="text-[10px] font-bold text-gray-400 uppercase mb-2">
+                        {category}
+                      </p>
+                      <div className="grid grid-cols-5 gap-1.5">
+                        {questions
+                          .filter((q) => q.category === category)
+                          .map((q) => (
+                            <button
+                              key={q.id}
+                              className={cn(
+                                'w-8 h-8 rounded-lg border flex items-center justify-center text-xs font-medium transition-all',
+                                answers[q.id]
+                                  ? 'bg-teal-600 border-teal-600 text-white shadow-sm'
+                                  : 'border-gray-200 text-gray-600 hover:border-teal-300 hover:text-teal-600',
+                              )}
+                            >
+                              {q.id}
+                            </button>
+                          ))}
+                      </div>
+                    </div>
+                  ),
+                )}
               </div>
             </div>
           </div>
