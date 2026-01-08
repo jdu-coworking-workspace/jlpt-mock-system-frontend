@@ -97,7 +97,7 @@ function TestTakingComponent() {
                       className={cn(
                         'w-6 h-6 rounded-full border flex items-center justify-center text-xs font-bold transition-all',
                         answers[q.id] === i + 1
-                          ? 'bg-black border-black text-white'
+                          ? 'bg-teal-600 border-teal-600 text-white'
                           : 'border-black text-black bg-white',
                       )}
                     >
@@ -131,13 +131,10 @@ function TestTakingComponent() {
                       className={cn(
                         'w-8 h-8 rounded-full border flex items-center justify-center transition-all shadow-sm',
                         answers[q.id] === num
-                          ? 'bg-black border-black'
+                          ? 'bg-teal-600 border-teal-600'
                           : 'bg-white border-gray-300 group-hover/btn:border-teal-400',
                       )}
                     >
-                      {answers[q.id] === num && (
-                        <div className="w-3 h-3 bg-white rounded-full" />
-                      )}
                     </div>
                   </button>
                 ))}
