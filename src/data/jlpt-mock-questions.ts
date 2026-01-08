@@ -3,7 +3,15 @@ export interface Question {
   text: string
   highlight?: string
   options: string[]
-  category: 'Kanji Reading' | 'Orthography' | 'Word Formation' | 'Contextual Usage' | 'Paraphrases' | 'Usage'
+  category:
+    | 'Kanji Reading'
+    | 'Orthography'
+    | 'Word Formation'
+    | 'Contextual Usage'
+    | 'Paraphrases'
+    | 'Usage'
+    | 'Grammar (Sentential 1)'
+    | 'Grammar (Sentential 2)'
 }
 
 export const jlptQuestions: Question[] = [
@@ -201,7 +209,7 @@ export const jlptQuestions: Question[] = [
       '適度に運動することは健康に良い。',
       '彼は適度な態度をとった。',
       '適度の料理を作る。',
-      '適度に勉強する。'
+      '適度に勉強する。',
     ],
     category: 'Usage',
   },
@@ -223,8 +231,8 @@ export const jlptQuestions: Question[] = [
     highlight: '採用',
     options: [
       '新しい技術を採用する。',
-      '会議で意見を採用された。', // A bit unnatural, usually 意見が採用された
-      '彼は会社に採用になった。', // slightly off, 採用された
+      '会議で意見を採用された。',
+      '彼は会社に採用になった。',
       '本を採用して読む。',
     ],
     category: 'Usage',
@@ -235,9 +243,9 @@ export const jlptQuestions: Question[] = [
     highlight: '夢中',
     options: [
       '彼はゲームに夢中になっている。',
-      '夢中で寝ている。', // sleeping in a dream? No.
-      '夢中な人だ。', // Not typical usage
-      '夢中して勉強する。', // 夢中になって
+      '夢中で寝ている。',
+      '夢中な人だ。',
+      '夢中して勉強する。',
     ],
     category: 'Usage',
   },
@@ -248,9 +256,84 @@ export const jlptQuestions: Question[] = [
     options: [
       '両者は条件面で妥協した。',
       '彼は妥協な性格だ。',
-      '妥協して成功した。', // Possible but specific context
-      '妥協を許さない。', // Valid phrase, but let's assume 1 is the intended "simple correct" one for this level. 4 is also correct usage... "Takyou wo yurusanai" (Uncompromising). Usually these questions have only one clearly natural usage or the others are grammatically wrong. Let's stick to 1 being the clear "action" usage.
+      '妥協して成功した。',
+      '妥協を許さない。',
     ],
     category: 'Usage',
+  },
+
+  // --- 7. Grammar (Sentential 1) (問題7) ---
+  {
+    id: 31,
+    text: '田中さんは、毎日ジョギングを＿＿＿としている。',
+    highlight: '＿＿＿',
+    options: ['しよう', 'する', 'したい', 'して'],
+    category: 'Grammar (Sentential 1)',
+  },
+  {
+    id: 32,
+    text: '彼が犯人である＿＿＿、証拠が十分ではない。',
+    highlight: '＿＿＿',
+    options: ['にしても', 'にしては', 'としても', 'としては'],
+    category: 'Grammar (Sentential 1)',
+  },
+  {
+    id: 33,
+    text: '子供の頃は、よくこの川で遊んだ＿＿＿。',
+    highlight: '＿＿＿',
+    options: ['ものだ', 'ことだ', 'わけだ', 'はずだ'],
+    category: 'Grammar (Sentential 1)',
+  },
+  {
+    id: 34,
+    text: '病気だからといって、会社を休む＿＿＿にはいかない。',
+    highlight: '＿＿＿',
+    options: ['わけ', 'はず', 'こと', 'もの'],
+    category: 'Grammar (Sentential 1)',
+  },
+  {
+    id: 35,
+    text: '疲れた時は、早く寝る＿＿＿。',
+    highlight: '＿＿＿',
+    options: ['に限る', 'にすぎない', 'にほかならない', 'に違いない'],
+    category: 'Grammar (Sentential 1)',
+  },
+
+  // --- 8. Grammar (Sentential 2) (問題8) - Star Problems ---
+  // Format: Text includes blanks and a star. Options are the sentence fragments.
+  {
+    id: 36,
+    text: '私は　＿＿　＿＿　★　＿＿　と思います。',
+    highlight: '★',
+    options: ['ほうが', '行った', 'アメリカへ', 'いい'], // アメリカへ 行った ほうが いい
+    category: 'Grammar (Sentential 2)',
+  },
+  {
+    id: 37,
+    text: 'この問題は　＿＿　＿＿　★　＿＿　そうです。',
+    highlight: '★',
+    options: ['難しく', 'なさ', 'それほど', 'は'], // それほど 難しく は なさ
+    category: 'Grammar (Sentential 2)',
+  },
+  {
+    id: 38,
+    text: '彼女は　＿＿　＿＿　★　＿＿　見えない。',
+    highlight: '★',
+    options: ['ようには', '病気の', 'とても', '人の'], // とても 病気の 人の ようには
+    category: 'Grammar (Sentential 2)',
+  },
+  {
+    id: 39,
+    text: '会議は　＿＿　＿＿　★　＿＿　行われた。',
+    highlight: '★',
+    options: ['議長', '中心', 'を', 'として'], // 議長 を 中心 として
+    category: 'Grammar (Sentential 2)',
+  },
+  {
+    id: 40,
+    text: '彼が　＿＿　＿＿　★　＿＿　驚いた。',
+    highlight: '★',
+    options: ['ことに', '合格した', '試験に', 'は'], // 試験に 合格した ことに は
+    category: 'Grammar (Sentential 2)',
   },
 ]
